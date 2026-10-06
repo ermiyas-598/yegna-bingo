@@ -1,0 +1,22 @@
+services:
+  yegna-bingo:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      network: host
+    image: yegna-bingo:production
+    container_name: yegna-bingo
+    restart: unless-stopped
+    network_mode: host
+    env_file:
+      - path: .env.production
+        required: false
+    environment:
+      NODE_ENV: production
+      PORT: 3000
+    healthcheck:
+      test: ["CMD", "node", "-e", "fetch('http://127.0.0.1:3000/').then(r => process.exit(r.ok ? 0 : 1)).catch(() => process.exit(1))"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 10s

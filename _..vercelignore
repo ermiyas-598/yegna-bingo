@@ -1,0 +1,10 @@
+node_modules
+.env
+.env.*
+!.env.example
+Dockerfile
+docker-compose.yml
+ecosystem.config.cjs
+README.md
+server.ts
+bun.lock
